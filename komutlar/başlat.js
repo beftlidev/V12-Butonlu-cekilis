@@ -1,6 +1,9 @@
 const Nuggies = require('nuggies');
 const ms = require('ms')
+const db = require("croxydb") 
 module.exports.run = async (client, message, args) => {
+let açıkmı = await data.fetch(`pre_${message.author.id}`)
+  if(açıkmı) {
 	let requirements;
 	let prize;
 	if (!message.member.hasPermission('MANAGE_GUILD')) return message.reply('<:carpi:855750448711467058> Bu Komudu kullanmaya yetkin yok!');
@@ -31,7 +34,12 @@ module.exports.run = async (client, message, args) => {
 		endAfter: args[0],
 		requirements: requirements,
 		channel: message.channel.id,
-	});
+	}); else { return message.channel.send(new Discord.MessageEmbed()
+ .setDescription(`Bu komut premiumlulara özel!
+Premium almak için [Destek sunucumuzu](https://discord.gg/KZfAEjrPUF) ziyaret et!`)
+.setTimestamp()
+)
+} 
 }
 
 exports.help = {
